@@ -8,6 +8,7 @@ let operator;
 
 let storedNumber;
 let output = document.createElement('p');
+let total;
 
 numberButton.forEach(item => item.addEventListener("click", getNumbers));
 
@@ -29,32 +30,37 @@ function getNumbers() {
 operatorButton.forEach(item => item.addEventListener("click", getOperator));
 
 function getOperator() {
-    if (operator === undefined && lastNumber === undefined) {
-        lastNumber = parseInt(storedNumber);
-        storedNumber = undefined;
-        operator = this.value;
-    }
-    else if (!(operator === undefined) && !(isNaN(lastNumber)) && newNumber === undefined) {
-        newNumber = parseInt(storedNumber);
-        let total = operate(lastNumber, newNumber, operator);
+    if (operator === "=") {
+        total = operate(lastNumber, newNumber, operator);
         lastNumber = total;
-
-        operator = undefined;
+        
         storedNumber = undefined;
         newNumber = undefined;
         output.textContent = total;
         display.appendChild(output);
     }
-    else if (operator === undefined && !(isNaN(lastNumber)) && newNumber === undefined) {
+    else if (operator === undefined && lastNumber === undefined) {
+        lastNumber = parseInt(storedNumber);
+        storedNumber = undefined;
         operator = this.value;
+        output.textContent = total;
+        display.appendChild(output);
+    }
+    else if (!(operator === undefined) && !(isNaN(lastNumber)) && newNumber === undefined) {
         newNumber = parseInt(storedNumber);
-        let total = operate(lastNumber, newNumber, operator);
+        total = operate(lastNumber, newNumber, operator);
         lastNumber = total;
 
-        operator = undefined;
+        operator = this.value;
         storedNumber = undefined;
         newNumber = undefined;
-        console.log(total);
+        output.textContent = total;
+        display.appendChild(output);
+    }    
+    else if (operator === undefined && !(isNaN(lastNumber))) {
+        operator = this.value;
+
+        
     }
 }
 
