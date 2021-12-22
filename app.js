@@ -1,12 +1,13 @@
 const numberButton = Array.from(document.getElementsByClassName("number"));
 const operatorButton = Array.from(document.getElementsByClassName("operator"));
+const display = document.getElementById("number-display");
 
 let lastNumber;
 let newNumber;
 let operator;
 
 let storedNumber;
-
+let output = document.createElement('p');
 
 numberButton.forEach(item => item.addEventListener("click", getNumbers));
 
@@ -20,6 +21,9 @@ function getNumbers() {
             storedNumber += this.value;
             console.log(storedNumber)
         }
+        
+        output.textContent = storedNumber;
+        display.appendChild(output);
 }
 
 operatorButton.forEach(item => item.addEventListener("click", getOperator));
@@ -38,7 +42,8 @@ function getOperator() {
         operator = undefined;
         storedNumber = undefined;
         newNumber = undefined;
-        console.log(total);
+        output.textContent = total;
+        display.appendChild(output);
     }
     else if (operator === undefined && !(isNaN(lastNumber)) && newNumber === undefined) {
         operator = this.value;
