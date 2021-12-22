@@ -67,7 +67,7 @@ body {
     background-color: rgb(54, 54, 54);
 }
 
-.operator:active, #equals:active, #clear:active, #delete:active, .btn:active {
+.btn:active {
     box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
                 inset 2px 2px 3px rgba(0, 0, 0, .6);
 }
