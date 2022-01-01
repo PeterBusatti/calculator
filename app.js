@@ -120,7 +120,7 @@ function operate(a, b, operator) {
     }
     
     if (result % 1 != 0) {
-        return result.toFixed(5);
+        return result.toPrecision(14) / 1;
     }
     else {
         return result;
