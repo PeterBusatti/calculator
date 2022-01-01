@@ -1,6 +1,7 @@
 const numberButton = Array.from(document.getElementsByClassName("number"));
 const operatorButton = Array.from(document.getElementsByClassName("operator"));
 const display = document.getElementById("number-display");
+const clearButton = document.getElementById("clear");
 
 let firstNumber;
 let secondNumber;
@@ -11,6 +12,18 @@ let output = document.createElement('p');
 let total;
 
 changeDisplay(0);
+
+clearButton.addEventListener("click", clear);
+
+function clear() {
+    firstNumber = undefined;
+    secondNumber = undefined;
+    operator = undefined;
+    storedNumber = undefined;
+    total = undefined;
+    
+    changeDisplay(0);
+}
 
 numberButton.forEach(item => item.addEventListener("click", getNumbers));
 
@@ -33,10 +46,10 @@ function getOperator() {
         secondNumber = parseInt(storedNumber);
         total = operate(firstNumber, secondNumber, operator);
         firstNumber = total;
-        
         storedNumber = undefined;
         secondNumber = undefined;
         operator = undefined;
+        
         changeDisplay(firstNumber);
         console.log("1");
         //this.removeEventListener("click", getOperator);
@@ -45,19 +58,19 @@ function getOperator() {
         firstNumber = parseInt(storedNumber);
         storedNumber = undefined;
         operator = this.value;
-        console.log("2");
         
         changeDisplay(firstNumber);
+        console.log("2");
     }
     else if (!(operator === undefined) && !(isNaN(firstNumber)) && secondNumber === undefined &&
               this.value != "=") {
         secondNumber = parseInt(storedNumber);
         total = operate(firstNumber, secondNumber, operator);
         firstNumber = total;
-
         operator = this.value;
         storedNumber = undefined;
         secondNumber = undefined;
+        
         changeDisplay(total);
         console.log("3");
     }  
@@ -91,18 +104,28 @@ function divide(a, b) {
 };
 
 function operate(a, b, operator) {
+    let result;
+
     if (operator === "+") {
-        return add(a, b);
+        result = add(a, b);
     }
     else if (operator === "-") {
-        return subtract(a, b);
+        result = subtract(a, b);
     }
     else if (operator === "*") {
-        return multiply(a, b);
+        result = multiply(a, b);
     }
     else if (operator === "/") {
-        return divide(a, b);
+        result = divide(a, b);
     }
+    
+    if (result % 1 != 0) {
+        return result.toFixed(5);
+    }
+    else {
+        return result;
+    }
+    
 }    
 
 let usrop = "/"
