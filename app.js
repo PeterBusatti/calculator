@@ -2,6 +2,7 @@ const numberButton = Array.from(document.getElementsByClassName("number"));
 const operatorButton = Array.from(document.getElementsByClassName("operator"));
 const display = document.getElementById("number-display");
 const clearButton = document.getElementById("clear");
+const deleteButton = document.getElementById("delete");
 
 let firstNumber;
 let secondNumber;
@@ -23,6 +24,23 @@ function clear() {
     total = undefined;
     
     changeDisplay(0);
+}
+
+deleteButton.addEventListener("click", erase);
+
+function erase() {
+    nbrLength = storedNumber.length;
+    
+    if (nbrLength === 1) {
+        storedNumber = undefined;
+
+        changeDisplay(0);
+    }
+    else if (nbrLength > 1) {
+        storedNumber = storedNumber.slice(0, nbrLength -1);
+        changeDisplay(storedNumber);
+    }
+    
 }
 
 numberButton.forEach(item => item.addEventListener("click", getNumbers));
