@@ -102,7 +102,7 @@ function getOperator() {
 
 function changeDisplay(content) {
     output.textContent = content;
-        display.appendChild(output);
+    display.appendChild(output);
 }
 
 function add(a, b) {
