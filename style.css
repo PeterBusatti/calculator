@@ -6,6 +6,9 @@
 body {
     display: flex;
     justify-content: center;
+    background-image: url("images/desk.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #calc-container {
@@ -14,7 +17,7 @@ body {
     align-items: center;
     height: 500px;
     width: 400px;
-    border: solid red 2px;
+    border: solid black 3px;
     border-radius: 10px;
     background-color: lightblue;
     padding-bottom: 25px;
@@ -29,7 +32,7 @@ body {
     height: 50px;
     width: 350px;
     background-color: lightgray;
-    border: solid black 1px;
+    border: solid black 2px;
     border-radius: 10px;
     margin-bottom: 15px;
     padding-right: 5px;
